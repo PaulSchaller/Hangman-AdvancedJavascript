@@ -101,6 +101,7 @@ function guess(){
 		
 	//determine if the puzzle has been solved
 	if(puzzleWord.isComplete()){ 
+		console.log("CONGRATULATIONS!    You Won!");
 		console.log('Yes! It was ' + puzzleWord.toString() + '!');
 		optionA();//function call to allow the user a new puzzle if current puzzle is solved
 	}
