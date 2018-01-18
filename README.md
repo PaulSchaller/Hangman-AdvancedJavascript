@@ -10,4 +10,4 @@ The code is very compatible and reusable.  Constructor functions with function p
 
 npm inquirer was also used.  This also reused code and cut down on programming tasks.
 
-The hangman puzzle program chooses a word and outputs a puzzle board to the user.  The user guesses letters.  The results of the guesses are revealed on the puzzle board.  Updates on game status are given, such as the number of guesses remaining.  A successful solution of the puzzle getss a 'congratulations!' and the option to start a new game.  
+The hangman puzzle program chooses a word and outputs a puzzle board to the user.  The user guesses letters.  The results of the guesses are revealed on the puzzle board.  Updates on game status are given, such as the number of guesses remaining.  A successful solution of the puzzle gets a 'congratulations!' and the option to start a new game.  
