@@ -31,7 +31,7 @@ word.prototype.toString = function(){
 //  the user.
 word.prototype.isComplete = function(){
 	for(i=0; i<this.value.length; i++){
-		if (this.wordLetters[i] == '2'{
+		if (this.wordLetters[i] == '2'){
 			return false;
 		}
 		else{
