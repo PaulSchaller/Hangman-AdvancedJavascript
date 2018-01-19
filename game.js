@@ -16,16 +16,6 @@ var puzzleWord = new word(sportsWord);
 //the user can have ten wrong letter guesses
 var maxGuesses = 10;	
 
-//making an instance of the letter constructor for each letter in puzzleWord
-for(var i=0; i<puzzleWord.value.length;i++){
-	puzzleWord.wordLetters[i] = new letter(puzzleWord.value[i]);
-}
-
-//setting each letter in the puzzle word to show a blank line to the user at the start
-//      of the game
-for(var i=0; i<puzzleWord.value.length; i++){
-	puzzleWord.wordLetters[i].appear = '2';
-}
 
 //output the beginning (blank) puzzle board to the user by using the puzzleWord from the game file 
 //     with a process on it from the word file which actually has a process on it from the letter file 
@@ -70,24 +60,25 @@ function guess(){
 				for(var i=0; i<puzzleWord.value.length; i++){
 					if(abc === puzzleWord.lettersGuessed[i]){
 						console.log("This letter is a duplicate.");
-						guess();
+						return guess();
 					}
 				}
 
 				//function to find matches between the user's letter selection and the
 				//    puzzle word
+				var loseGuess = true;
 				for(var i=0; i<puzzleWord.value.length; i++){
-					if(abc == puzzleWord.wordLetters[i]){
+					if(abc == puzzleWord.wordLetters[i].char){
 						puzzleWord.wordLetters[i].appear = '1';
+						loseGuess = false;
 					}
 				}
 
-			//   .includes used on the puzzle word (if the letter selected by the user is 
-			//           not included in the word, the user loses one of his guesses)
-     		if (!puzzleWord.value.includes(abc)){
+				if (loseGuess == true){
 					maxGuesses--;
-			}
+				}
 
+		
 
 			//outputs the updated puzzle board after the letter selection of the user
 			console.log(puzzleWord.toString());
@@ -96,20 +87,22 @@ function guess(){
 			//      for duplicate letter requests in the future
 			puzzleWord.lettersGuessed.push(abc);
 
+			//determine if the puzzle has been solved
+			if(puzzleWord.isComplete()){ 
+				console.log("CONGRATULATIONS!    You Won!");
+				console.log('Yes! It was ' + puzzleWord.toString() + '!');
+				return optionA();//function call to allow the user a new puzzle if current puzzle is solved
+			}
+							
+			console.log('You have ' + (maxGuesses) + ' guesses left.');
+			guess(); //Recursive call  (get the user's next letter selection)
+
+
+
 	});	//the end of the inquirer prompt (the letter selection of the user has been handled).
 
-		
-	//determine if the puzzle has been solved
-	if(puzzleWord.isComplete()){ 
-		console.log("CONGRATULATIONS!    You Won!");
-		console.log('Yes! It was ' + puzzleWord.toString() + '!');
-		optionA();//function call to allow the user a new puzzle if current puzzle is solved
-	}
-					
-	console.log('You have ' + (maxGuesses) + ' guesses left.');
-	guess(); //Recursive call  (get the user's next letter selection)
-}
-
+}	
+	
 
 //function definition of a function to allow a user a new word puzzle
 function optionA(){
@@ -122,6 +115,7 @@ function optionA(){
 			if (answer.again == true) {
 				sportsWord = sports[Math.floor(Math.random()*sports.length)];
 				puzzleWord = new word(sportsWord);
+				maxGuesses = 10;
 				guess();//a new puzzle word has been created and the program requests a letter
 						//    guess from the user
 			}

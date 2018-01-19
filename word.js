@@ -12,6 +12,12 @@ var word = function(value){
 	this.value = value;
 	this.wordLetters = [];
 	this.lettersGuessed = [];
+
+	//making an instance of the letter constructor for each letter in puzzleWord
+	for(var i=0; i<value.length;i++){
+		this.wordLetters[i] = new letter(value[i]);
+		this.wordLetters[i].appear = '2';
+	}
 };
 
 
@@ -30,14 +36,13 @@ word.prototype.toString = function(){
 //a function prototype that determines if the puzzle has been solved by
 //  the user.
 word.prototype.isComplete = function(){
+	var result = true;
 	for(i=0; i<this.value.length; i++){
-		if (this.wordLetters[i] == '2'){
-			return false;
-		}
-		else{
-			return true;
+		if (this.wordLetters[i].appear == '2'){
+			result = false;
 		}
 	}
+	return result;
 }
 
 
