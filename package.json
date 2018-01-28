@@ -18,5 +18,8 @@
   "homepage": "https://github.com/PaulSchaller/Hangman-AdvancedJavascript#readme",
   "dependencies": {
     "inquirer": "^5.0.0"
-  }
+  },
+  "scripts": {
+   "start": "node server.js"
+ }
 }
