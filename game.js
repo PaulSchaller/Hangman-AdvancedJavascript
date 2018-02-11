@@ -54,7 +54,6 @@ function guess(){
 													//'letterInput' is the 'name:'.					
 				
 				//what processes we are doing with the input received
-				
 				//function to identify duplicate letter selection by the user and 
 				//    have the user request a different letter
 				for(var i=0; i<puzzleWord.value.length; i++){
